@@ -1,0 +1,39 @@
+<%- include ("./partials/header.ejs") %>
+    <section class="max-w-[1200px] mx-auto my-10">
+        <div class="flex justify-around items-center my-10">
+            <h3 class="text-4xl font-semibold">Wanna create a <span class="bg-yellow-300">note</span></h3>
+            <a class="bg-gray-500 text-white px-[10px] py-[15px] rounded-xl duration-300 hover:bg-gray-700" href="/new-note">Click Here</a>
+        </div>
+        <div class="w-full px-32 py-10 flex justify-between">
+            <h4 class="text-4xl opacity-90 font-bold underline">Notes</h4>
+            <div class="">
+                <form action="/" method="get">
+                <input id="searchInput" class="p-2 border outline-none focus:border-2" type="text" placeholder="Search By Title" name="search" value="<%= search %>">
+                <button class="bg-slate-500 p-2 rounded hover:bg-slate-700" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+        <div class="w-full px-32 py-5">
+            <% if (notes.length > 0) { %>
+                <%
+            notes.forEach((note) => { %>
+                <div class="py-10 border-b border-black">
+                    <div class="mb-6">
+                        <h1 class="text-2xl bg-yellow-100 w-max"><strong><%= note.title %></strong></h1>
+                        <p class="opacity-70 text-s"><%= new Date(note.createdAt).toLocaleDateString() %></p>
+                        <p class="text-lg opacity-80 text-justify"><%- note.content %></p>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <a href="/edit-note/<%= note._id %>" class="bg-blue-400  py-[8px] px-[15px] rounded hover:bg-blue-600">Edit</a>
+                        <form action="/<%= note._id %>?_method=DELETE" method="post" onsubmit="return confirm('Are you sure?')">
+                            <button class="bg-red-400 py-[8px] px-[15px] rounded hover:bg-red-600">Delete</button>
+                        </form>
+                    </div>
+                </div>
+            <% }) %>
+            <% } else { %>
+                <p class="text-gray-500 text-center text-3xl pb-32 border-b border-black">Nothing found!</p>
+           <% } %>
+        </div>
+    </section>
+<%- include ("./partials/footer.ejs") %>
