@@ -1,12 +1,13 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const methodOverride = require('method-override');
-const url = require('url');
+require('dotenv').config();
 
 // mongoose connection here
+const dbURI = process.env.MONGO_URI;
 (async () => {
     try {
-        mongoose.connect("mongodb+srv://cbv934:cbhere7524@cluster0.4hplb.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0");
+        mongoose.connect(dbURI);
         console.log("Connection established");
     } catch(error) {
         console.log("Error: " + error);
