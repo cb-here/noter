@@ -9,8 +9,7 @@ async function showNotes(req, res) {
 
         const data = {
             title: "Home",
-            notes: notes,
-            search
+            notes: notes, search
         }
         res.render('index', data);
     } catch(error) {

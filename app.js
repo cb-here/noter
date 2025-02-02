@@ -1,10 +1,13 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const methodOverride = require('method-override');
-require('dotenv').config();
+const passport = require('passport');
+const passportLocal = require('passport-local');
+// require('dotenv').config();
 
 // mongoose connection here
-const dbURI = process.env.MONGO_URI;
+// const dbURI = process.env.MONGO_URI;
+const dbURI = "mongodb://localhost:27017/notes";
 (async () => {
     try {
         mongoose.connect(dbURI);
